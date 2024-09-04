@@ -29,7 +29,11 @@ export class PlaylistsService {
       videoCategoryId: '10',
     });
 
-    return videosReponse.data;
+    return videosReponse.data.items.map((item) => ({
+      id: item.id,
+      title: item.snippet.title,
+      thumbnail: item.snippet.thumbnails.high.url,
+    }));
   }
 
   async create(createPlaylistDto: CreatePlaylistDto) {
